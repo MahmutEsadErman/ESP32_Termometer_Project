@@ -13,7 +13,14 @@ A comprehensive temperature monitoring system built with ESP32 that displays tem
 - **ESP-IDF framework** based implementation
 - **FreeRTOS multitasking** architecture
 
-## 🔧 Hardware Components
+## Screenshots and Videos
+
+https://github.com/user-attachments/assets/00ef5f27-1582-4e6f-9c51-e148d8dd8530
+
+![Ekran görüntüsü 2025-06-24 134255](https://github.com/user-attachments/assets/2f15792c-c6d2-4f92-ba7b-d2a93214f2d9)
+ 
+
+## Hardware Components
 
 - **ESP32 DevKit V1** - Main microcontroller
 - **LCD 1602 with I2C backpack** - Temperature and status display
@@ -22,7 +29,7 @@ A comprehensive temperature monitoring system built with ESP32 that displays tem
 - **Push Button** - Screen switching functionality
 - **Resistors** - Pull-up and current limiting
 
-## 📊 Pin Configuration
+## Pin Configuration
 
 ### LCD (I2C)
 - **SDA**: GPIO 21
