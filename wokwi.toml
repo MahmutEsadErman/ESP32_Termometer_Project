@@ -1,0 +1,6 @@
+[wokwi]
+version = 1
+elf = "build/Esp32_Termometer_Project.elf"
+firmware = "build/Esp32_Termometer_Project.bin"
+gdbServerPort=3333
+

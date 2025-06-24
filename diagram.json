@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "author": "Benny Meisels",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 4.7,
+      "left": -5,
+      "attrs": { "builder": "esp-idf" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn-red",
+      "top": 169.4,
+      "left": -144,
+      "attrs": { "color": "red", "bounce": "0" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -176,
+      "left": 149.6,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 13.6,
+      "left": 250.7,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 12.2,
+      "left": -231,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 71.15,
+      "left": 134.4,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 80.75,
+      "left": 153.6,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 90.35,
+      "left": 144,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "btn-red:2.r", "esp:GND.2", "black", [ "v0.2", "h67.4", "v-47.9" ] ],
+    [ "btn-red:1.r", "esp:D13", "green", [ "h57.8", "v-38.2" ] ],
+    [ "esp:3V3", "ntc1:VCC", "red", [ "h28.5", "v86.4", "h-288", "v-134.4", "h96", "v-67.2" ] ],
+    [ "esp:GND.2", "ntc1:GND", "black", [ "h-9.6", "v-0.1" ] ],
+    [ "ntc1:OUT", "esp:D34", "green", [ "h0" ] ],
+    [ "esp:D22", "lcd1:SCL", "green", [ "h28.5", "v-154.2" ] ],
+    [ "esp:D21", "lcd1:SDA", "orange", [ "h38.1", "v-192.6" ] ],
+    [ "esp:GND.1", "lcd1:GND", "black", [ "h18.9", "v-297.7" ] ],
+    [ "esp:3V3", "lcd1:VCC", "red", [ "h9.3", "v-297.7" ] ],
+    [ "rgb1:R", "r1:2", "red", [ "v0" ] ],
+    [ "esp:D19", "r1:1", "red", [ "h0" ] ],
+    [ "esp:D18", "r2:1", "green", [ "h0" ] ],
+    [ "r2:2", "rgb1:G", "green", [ "h37.2", "v0", "h27.5" ] ],
+    [ "esp:D5", "r3:1", "blue", [ "h0" ] ],
+    [ "r3:2", "rgb1:B", "blue", [ "v0", "h27.6" ] ],
+    [ "rgb1:COM", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,115 @@
+menu "Thermometer Configuration"
+
+    orsource "$IDF_PATH/examples/common_components/env_caps/$IDF_TARGET/Kconfig.env_caps"
+
+    menu "LCD Configuration"
+        config LCD_I2C_SDA_GPIO
+            int "LCD I2C SDA GPIO"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_RANGE_MAX
+            default 21
+            help
+                GPIO number for I2C SDA (data line) connected to LCD.
+
+        config LCD_I2C_SCL_GPIO
+            int "LCD I2C SCL GPIO"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_RANGE_MAX
+            default 22
+            help
+                GPIO number for I2C SCL (clock line) connected to LCD.
+
+        config LCD_I2C_ADDRESS
+            hex "LCD I2C Address"
+            range 0x20 0x27
+            default 0x27
+            help
+                I2C address of the LCD display with PCF8574 backpack.
+                Common addresses are 0x27 or 0x3F.
+
+        config LCD_I2C_FREQ_HZ
+            int "LCD I2C Frequency (Hz)"
+            range 10000 400000
+            default 100000
+            help
+                I2C clock frequency for LCD communication.
+    endmenu
+
+    menu "RGB LED Configuration"
+        config RGB_LED_RED_GPIO
+            int "RGB LED Red GPIO"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+            default 19
+            help
+                GPIO number for RGB LED red channel.
+
+        config RGB_LED_GREEN_GPIO
+            int "RGB LED Green GPIO"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+            default 18
+            help
+                GPIO number for RGB LED green channel.
+
+        config RGB_LED_BLUE_GPIO
+            int "RGB LED Blue GPIO"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+            default 5
+            help
+                GPIO number for RGB LED blue channel.
+
+        config RGB_LED_PWM_FREQ
+            int "RGB LED PWM Frequency (Hz)"
+            range 1000 40000
+            default 5000
+            help
+                PWM frequency for RGB LED control.
+    endmenu
+
+    menu "Temperature Sensor Configuration"
+        config NTC_ADC_GPIO
+            int "NTC Temperature Sensor GPIO"
+            range 32 39
+            default 34
+            help
+                GPIO number for NTC temperature sensor (ADC input).
+                Must be an ADC-capable GPIO (32-39 on ESP32).
+
+        choice NTC_ADC_ATTEN
+            prompt "NTC ADC Attenuation"
+            default NTC_ADC_ATTEN_DB_11
+            help
+                ADC attenuation setting for temperature sensor.
+
+            config NTC_ADC_ATTEN_DB_0
+                bool "0 dB (0-1.1V)"
+            config NTC_ADC_ATTEN_DB_2_5
+                bool "2.5 dB (0-1.5V)"
+            config NTC_ADC_ATTEN_DB_6
+                bool "6 dB (0-2.2V)"
+            config NTC_ADC_ATTEN_DB_11
+                bool "11 dB (0-3.9V)"
+        endchoice
+
+        config NTC_BETA_VALUE
+            int "NTC Beta Value"
+            range 3000 4500
+            default 3950
+            help
+                Beta value of the NTC thermistor for temperature calculation.
+
+        config TEMP_READ_INTERVAL_MS
+            int "Temperature Reading Interval (ms)"
+            range 50 10000
+            default 100
+            help
+                Interval between temperature readings in milliseconds.
+    endmenu
+
+    menu "Button Configuration"
+        config BUTTON_GPIO
+            int "Button GPIO"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_RANGE_MAX
+            default 13
+            help
+                GPIO number for the button to switch LCD display modes.
+    endmenu
+
+endmenu
